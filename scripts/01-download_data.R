@@ -1,26 +1,37 @@
 #### Preamble ####
-# Purpose: Downloads and saves the data from [...UPDATE THIS...]
-# Author: Rohan Alexander [...UPDATE THIS...]
-# Date: 11 February 2023 [...UPDATE THIS...]
-# Contact: rohan.alexander@utoronto.ca [...UPDATE THIS...]
+# Purpose: Downloads and saves the data from Toronto Open data
+# Author: Diana Shen 
+# Date: 19 September 2024 
+# Contact: diana.shen@mail.utoronto.ca 
 # License: MIT
-# Pre-requisites: [...UPDATE THIS...]
-# Any other information needed? [...UPDATE THIS...]
+# Pre-requisites: Know where to get the Daily Shelter & Overnight Service 
+# Occupancy & Capacity of the City of Toronto
 
 
 #### Workspace setup ####
+#install.packages("opendatatoronto")
+#install.packages("knitr")
+
+library(knitr)
+library(janitor)
+library(lubridate)
 library(opendatatoronto)
 library(tidyverse)
-# [...UPDATE THIS...]
 
 #### Download data ####
-# [...ADD CODE HERE TO DOWNLOAD...]
-
-
+#### Acquire ####
+toronto_shelters <-
+  list_package_resources("21c83b32-d5a8-4106-a54f-010dbe49f6f2") |>
+  filter(name == 
+           "daily-shelter-overnight-service-occupancy-capacity-2023.csv") |>
+  get_resource()
 
 #### Save data ####
-# [...UPDATE THIS...]
-# change the_raw_data to whatever name you assigned when you downloaded it.
-write_csv(the_raw_data, "inputs/data/raw_data.csv") 
+write_csv(
+  x = toronto_shelters,
+  file = "~/Starter folder/data/raw_data/toronto_shelters_2023.csv"
+)
+
+head(toronto_shelters)
 
          
