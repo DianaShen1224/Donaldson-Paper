@@ -18,21 +18,17 @@ library(janitor)
 #### Simulate data ####
 simulated_sector <-
   tibble(
-    # Use 1 through to 151 to represent each division
     "Division" = 1:151,
-    # Randomly pick an option, with replacement, 151 times
     "Sector" = sample(
       x = c("Men", "Women", "Mixed Adult","Youth","Family"),
       size = 151,
       replace = TRUE
     )
   )
-
-simulated_sector
-
+write_csv(simulated_sector, file = "data/raw_data/simulated_sector.csv")
 #### Simulate ####
 set.seed(1097)
-max_capacity <- 60
+max_capacity=60
 simulated_occupancy_data <-
   tibble(
     date = rep(x = as.Date("2023-01-01") + c(0:364), times = 3),
@@ -45,9 +41,9 @@ simulated_occupancy_data <-
       rpois(
         n = 365 * 3,
         lambda = 30
-      ), 
-    number_occupancy_rate = number_occupied/max_capacity*100
+      ),occupancy_rate=number_occupied/max_capacity
   )
 
 head(simulated_occupancy_data)
+write_csv(simulated_occupancy_data, file = "data/raw_data/simulated_occupancy.csv")
 
