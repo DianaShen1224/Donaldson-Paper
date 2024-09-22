@@ -14,7 +14,6 @@
 
 library(knitr)
 library(janitor)
-library(lubridate)
 library(opendatatoronto)
 library(tidyverse)
 
@@ -29,7 +28,7 @@ toronto_shelters <-
 #### Save data ####
 write_csv(
   x = toronto_shelters,
-  file = "~/Starter folder/data/raw_data/toronto_shelters_2023.csv"
+  file = "~/Donaldson Paper/data/raw_data/toronto_shelters_2023.csv"
 )
 
 head(toronto_shelters)
