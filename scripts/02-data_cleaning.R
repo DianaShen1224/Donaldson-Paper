@@ -22,6 +22,5 @@ cleaned_data <-
            into=c("year","month","day"),
            sep="-")|>
   mutate(date=lubridate::ymd(paste(year,month,day,sep="-")))
-cleaned_data<-cleaned_data|>drop_na()
 #### Save data ####
 write_csv(cleaned_data, "data/analysis_data/analysis_data.csv")
