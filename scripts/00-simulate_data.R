@@ -17,6 +17,7 @@ library(janitor)
 
 #### Simulate data ####
 ##categorical
+set.seed(1098)
 num_shelters <- 151
 simulated_categorical <-tibble("Division" = 1:151,"Sector" = sample(c("Men", "Women", "Mixed Adult", "Youth", "Family"), num_shelters, replace = TRUE),
 "Program Model" = sample(c("Emergency", "Transitional"), num_shelters, replace = TRUE),
@@ -32,7 +33,9 @@ simulated_categorical <-tibble("Division" = 1:151,"Sector" = sample(c("Men", "Wo
 ))
 head(simulated_categorical)
 write_csv(simulated_categorical, file = "data/raw_data/simulated_categorical.csv")
+
 ##ID 
+set.seed(1098)
 num_shelters <- 3
 total_days <- 365
 total_rows <- num_shelters * total_days
@@ -55,6 +58,7 @@ simulated_ID <- tibble(
 )
 head(simulated_ID)
 write_csv(simulated_ID, file = "data/raw_data/simulated_ID.csv")
+
 ##numerical
 set.seed(1098)
 max_capacity<-150
