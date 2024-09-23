@@ -10,9 +10,7 @@
 library(tidyverse)
 
 #### Test data ####
-data1 <- read_csv("data/raw_data/simulated_numerical.csv")
-data2 <- read_csv("data/raw_data/simulated_categorical.csv")
-data3 <- read_csv("data/raw_data/simulated_ID.csv")
+data_shelter <- read_csv("data/raw_data/toronto_shelters_2023.csv")
 # Test for negative numbers
 check_non_negative <- function(data) {
   negative_test <- data %>%
@@ -26,9 +24,6 @@ check_non_negative <- function(data) {
     print(negative_test)
   }
 }
-check_non_negative(data1)
-check_non_negative(data3)
-#Test for NAs
-all(is.na(data1))
-all(is.na(data2))
-all(is.na(data3))
+check_non_negative(data_shelter )
+# Test for NAs
+all(is.na(data_shelter)) ## There is missing values in our dataset
