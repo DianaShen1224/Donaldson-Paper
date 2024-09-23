@@ -2,7 +2,7 @@
 title: "Assessing Toronto's Shelter System: Availability, Utilization, and Urgent Capacity Needs"
 author: 
   - Diana Shen
-thanks: "Code and data are available at: https://github.com/DianaShen1224/Donaldson-Paper.git"
+thanks: "Code and data are available at: https://github.com/DianaShen1224/Toronto-Shelter-Research"
 date: today
 date-format: long
 abstract: "This paper investigates the effectiveness of shelters in Toronto using data from the 'Daily Shelter & Overnight Service Occupancy & Capacity' dataset. Our findings show that while shelters are well-utilized with high occupancy rates, there is a significant shortage of long-term transitional shelters, crucial for helping individuals reintegrate into society. This gap is partly attributed to a cumbersome application process, leading to low demand despite the ongoing need. Approximately 78% of shelters are concentrated in Toronto, and areas like North York face significant demand relative to their supply, indicating a critical shortage of accessible facilities.  Additionally, discrepancies in occupancy rates, particularly among youth shelters, highlight the need for improved accessibility and awareness for vulnerable populations."
