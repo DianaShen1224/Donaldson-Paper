@@ -5,7 +5,7 @@ author:
 thanks: "Code and data are available at: https://github.com/DianaShen1224/Donaldson-Paper.git"
 date: today
 date-format: long
-abstract: "This paper investigates the effectiveness of shelters in Toronto using data from the 'Daily Shelter & Overnight Service Occupancy & Capacity' dataset. Our findings show that while emergency shelters are well-utilized with high occupancy rates, there is a significant shortage of long-term transitional shelters, crucial for helping individuals reintegrate into society. This gap is partly attributed to a cumbersome application process, leading to low demand despite the ongoing need. Approximately 78% of shelters are concentrated in Toronto, and areas like North York face significant demand relative to their supply, indicating a critical shortage of accessible facilities.  Additionally, discrepancies in occupancy rates, particularly among youth shelters, highlight the need for improved accessibility and awareness for vulnerable populations."
+abstract: "This paper investigates the effectiveness of shelters in Toronto using data from the 'Daily Shelter & Overnight Service Occupancy & Capacity' dataset. Our findings show that while shelters are well-utilized with high occupancy rates, there is a significant shortage of long-term transitional shelters, crucial for helping individuals reintegrate into society. This gap is partly attributed to a cumbersome application process, leading to low demand despite the ongoing need. Approximately 78% of shelters are concentrated in Toronto, and areas like North York face significant demand relative to their supply, indicating a critical shortage of accessible facilities.  Additionally, discrepancies in occupancy rates, particularly among youth shelters, highlight the need for improved accessibility and awareness for vulnerable populations."
 format: pdf
 number-sections: true
 bibliography: references.bib
@@ -36,11 +36,14 @@ Toronto has the largest homeless population in Canada, with over 10,000 individu
 Given the scale of homelessness in Toronto, it is essential to assess how effectively the city's shelter system is addressing this need. Many individuals experiencing homelessness face barriers to accessing information and services, making the availability of shelters a critical indicator of the system's effectiveness. Therefore, our paper utilizes data from 2023 from the Support Services division's Shelter Management Information System (SMIS) to examine the effectiveness of Toronto’s shelters. The paper uses shelter occupancy rates and service user counts as key availability indicators, exploring whether the government-funded shelters have been fully used to fill this knowledge gap.
 
 To do this, the daily list of active overnight shelter and allied services from the Toronto Shelter and SMIS database was obtained from Toronto Open Data, as described in Section [2.1](#sec1-data). Based on this dataset(Section [2.2](#sec2-data)), it was found that shelters in GTA are highly concentrated, with about 78% located within the city, while North York has the second-highest concentration at only 9.9%.  We find out that though shelters are highly available, despite Toronto's downtown, other cities are still facing a shortage. Regarding shelter usage, mixed adult emergency shelters are the most frequently used, with a total of 1,071,686 counts in 2023. Usage drops dramatically in February and rises again in December. The occupancy rate is consistently at 100% for both emergency and transitional shelters, which shows highly efficient results. 
+
 As discussed in Section [3](#third), We find out that though shelters are highly available, despite Toronto downtown, other cities are still facing a shortage(for NY only 9.9%). The whole year's usage is stable except for Feb and Dec fluctuations. Furthermore, occupancy trends highlight a unique issue within youth shelters, where peak occupancy remains around 50%, signaling potential service gaps for this vulnerable population. Additionally, transitional shelters face significant shortages, which are critical for helping individuals re-enter society. 
 With respect to the structure of this paper, Section [2](#sec-data) provides an overview of the data and results, while Section [3](#third) includes a discussion of the findings; and Section [A](#appendix-a) includes supplementary information.
 
 # Data {#sec-data}
-## Overview {#sec1-data}
+
+## Overview {#sec1-data} 
+
 The data used in this paper came from the OpenData Toronto portal through the library opendatatoronto (@opendatatoronto). The particular data set used to analyze the active overnight shelter and allied services in the Toronto Shelter
 in the City of Toronto is Daily Shelter & Overnight Service Occupancy & Capacity (@web2). It provides daily updates on shelter and overnight service programs administered by TSSS, including program operator, location, classification, occupancy, and capacity. This data is refreshed daily and the particular data 
 used in this paper is up-to-date as of December 31, 2023. In addition, this dataset is considered to be “open data”(@web2) and can be utilized for a variety of purposes as long as an attribution statement is attached (Section A.[1](#appendix-a.1)) and the link to the City of Toronto’s Open Data License is added (@web3).
@@ -53,13 +56,18 @@ The data was cleaned and analyzed by using the open-source statistical programmi
 
 ## Results {#sec2-data}
 
+@tbl-sum1 illustrates the summary statistic of the categorical variables (not including ID and address variables). It shows that Toronto owns the majority of shelters, approximately 78%. The shelters are highly concentrated since the second high city North York takes only 9.9% of the shelters. The shelter sectors are approximately evenly distributed, with the highest sector mixed adults (29.8%). The emergency program shelter programs comprised a majority (81.3%). For the service type, shelter consists 65.5% of the total services, followed by motels (25.2%) and 24-Hour Respite Sites (6.1%).
+Regular shelter (Base Shelter and Overnight Services System) comprised the majority (66.5%), followed by COVID-19 Response (20.6%). For the capacity type, bed-based is more common (68.8%), while for room-based is only 32%. \
+
+@tbl-sum2 illustrates the summary statistic of the numerical variables (not including ID and address variables). It shows that the mean of actual beds in shelters is approximately 44, and for funding beds is 45.5. Thus, the mean of unavailable beds is 1.1. For room-based, it's 73 for funding rooms and 69 for actual rooms, and the unavailable rooms are 4.9. The occupancy rate for both rooms and beds is high (99.1% and 97.5%), thus the unoccupied beds and rooms are low (0.5 and 0.4). The mean service user count is approximately 68 counts per day. \
+
 ```{r}
 #| echo: false
 #| eval: true
 #| warning: false
 #| message: false
 #| label: tbl-sum1
-#| fig-cap: "Summary of Catogrical Variables in the dataset"
+#| fig-cap: "Summary Statistics of Catogrical Variables in the dataset"
 datasummary_skim(cleaned_data |>select(location_city,sector,program_model,overnight_service_type,program_area,capacity_type),type = "categorical",
                  )
 ```
@@ -70,15 +78,11 @@ datasummary_skim(cleaned_data |>select(location_city,sector,program_model,overni
 #| warning: false
 #| message: false
 #| label: tbl-sum2
-#| fig-cap: "Summary of Numerical Variables in the dataset"
+#| fig-cap: "Summary Statistics of Numerical Variables in the dataset"
 datasummary_skim(cleaned_data |>select(capacity_actual_bed,capacity_funding_bed,occupied_beds,unoccupied_beds,unavailable_beds,capacity_actual_room,capacity_funding_room,occupied_rooms,unoccupied_rooms,unavailable_rooms,occupancy_rate_beds,occupancy_rate_rooms,service_user_count),type = "numeric",fun_numeric = list(Mean = Mean, SD =
     SD, Min = Min, Median = Median, Max = Max, Histogram = function(x) ""),
                  )
 ```
-
-@tbl-sum1 illustrates the summary statistic of the categorical variables (not including ID and address variables). It shows that Toronto owns the majority of shelters, approximately 78%. The shelters are highly concentrated since the second high city North York takes only 9.9% of the shelters. The shelter sectors are approximately evenly distributed, with the highest sector mixed adults (29.8%). The emergency program shelter programs comprised a majority (81.3%). For the service type, shelter consists 65.5% of the total services, followed by motels (25.2%) and 24-Hour Respite Sites (6.1%).
-Regular shelter (Base Shelter and Overnight Services System) comprised the majority (66.5%), followed by COVID-19 Response (20.6%). For the capacity type, bed-based is more common (68.8%), while for room-based is only 32%. \
-@tbl-sum2 illustrates the summary statistic of the numerical variables (not including ID and address variables). It shows that the mean of actual beds in shelters is approximately 44, and for funding beds is 45.5. Thus, the mean of unavailable beds is 1.1. For room-based, it's 73 for funding rooms and 69 for actual rooms, and the unavailable rooms are 4.9. The occupancy rate for both rooms and beds is high (99.1% and 97.5%), thus the unoccupied beds and rooms are low (0.5 and 0.4). The mean service user count is approximately 68 counts per day. \
 
 @fig-bar1 shows the sum of the count of service users in each city for each shelter program of homeless shelters. It indicates that the emergency program shelters in Toronto have the highest number of times used. In 2023, they have been used for 1,869,153 times (56.84% of total user counts). Followed by the emergency program shelters in North York (615,366,18.71%). Only three cities have the transitional program, which are Toronto (329,046), Etobicoke (5279), and Scarborough (13,427).
 
@@ -87,7 +91,7 @@ Regular shelter (Base Shelter and Overnight Services System) comprised the major
 #| eval: true
 #| message: false
 #| label: fig-bar1
-#| fig-cap: "Count of service users in each city for each shelter programs of homeless shelters."
+#| fig-cap: "Count of service users in each city for each shelter program of homeless shelters."
 #| warning: false 
 cleaned_data |>
   group_by(location_city, program_model) |>
@@ -97,7 +101,7 @@ cleaned_data |>
               vjust = -0.3, 
               size = 2.5) +
   geom_bar(stat = "identity", position = "dodge2") +
-  labs(x = "Categorizing Homeless Shelters", y = "Service User Count", fill = "Shelter Program") +theme_classic()+
+  labs(x = "shelter sectors", y = "Service User Count", fill = "Shelter Program") +theme_classic()+
   theme(legend.position = "bottom",
         axis.text.x = element_text(angle = 45, hjust = 1))
 ```
@@ -108,17 +112,18 @@ cleaned_data |>
 #| warning: false
 #| message: false
 #| label: fig-bar2
-#| fig-cap: "Service User Count for each category for each shelter program for homeless shelters."
+#| fig-cap: "Service User Count for each sectors for each shelter program for funded shelters."
 cleaned_data |>
   group_by(sector,program_model)|>
   summarize(total_user_count = sum(service_user_count), .groups = "drop") |> 
   ggplot(mapping = aes(x = sector,y=total_user_count,fill = program_model)) +
   geom_bar(stat = "identity") +
-  geom_text(stat = "identity", aes(label =total_user_count ))+theme_classic()+  
-  labs(x = "Categorizing Homeless Shelters", y = "Service User Count", fill = "Shelter Program") +
+  geom_text(stat = "identity", aes(label =total_user_count ),size = 3)+theme_classic()+  
+  labs(x = "shelter sectors", y = "Service User Count", fill = "Shelter Program") +
   theme(legend.position = "bottom",
         axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+
 In @fig-line1, the trend of service user counts by month reveals two notable fluctuations in 2023: a dramatic drop in February and a significant increase in December. As illustrated in @fig-line1-2, these changes are primarily driven by variations in the number of users of emergency program shelters, while the transitional programs show relatively stable usage throughout the year. 
 ```{r}
 #| echo: false
@@ -127,22 +132,22 @@ In @fig-line1, the trend of service user counts by month reveals two notable flu
 #| message: false
 #| label: fig-line1
 #| fig-cap: "Count of service users in each city by month."
-#| fig-subcap: ["Combined Programs","Seperated Programs"]
+#| fig-subcap: ["Combined Shelter Programs","Seperated Shelter Programs"]
 #| layout-ncol: 2
 cleaned_data |> 
   group_by(month) |> 
   summarize(total_user_count = sum(service_user_count), .groups = "drop") |> 
   ggplot(mapping = aes(x = month, y = total_user_count, group = 1)) + 
   geom_line() +
-  theme_minimal() +
-  labs(x = "Month", y = "Service User Count", fill = "Shelter Program")
+  theme_classic() +
+  labs(x = "Month", y = "Service User Count")
 cleaned_data |> 
   group_by(month, program_model) |> 
   summarize(total_user_count = sum(service_user_count), .groups = "drop") |> 
   ggplot(mapping = aes(x = month, y = total_user_count, group = program_model, color = program_model)) + 
   geom_line() +
-  theme_minimal() +
-  labs(x = "Month", y = "Service User Count", fill = "Shelter Program") +
+  theme_classic() +
+  labs(x = "Month", y = "Service User Count", color= "Shelter Program") +
   scale_fill_viridis_d()
 ```
 
@@ -153,20 +158,22 @@ In @fig-hist1, the occupancy rates for various categories of homeless shelters a
 #| warning: false
 #| message: false
 #| label: fig-hist1
-#| fig-cap: "Distribution of occupancy rate in each city for each category of homeless shelters."
-#| fig-subcap: ["Bed Based","Room Based"]
+#| fig-cap: "Distribution of occupancy rate for each shelter sector."
+#| fig-subcap: ["Bed-Based","Room-Based"]
 #| layout-ncol: 2
 
 cleaned_data |>
   ggplot(mapping = aes(x=occupancy_rate_beds,color= sector)) +
    geom_freqpoly(binwidth=10) +
-  labs(x = "Categorizing Homeless Shelters", y = "Occupancy Rate of Beds", fill = "Shelter Program") +
+  labs(x = "Occupancy Rate Beds", fill = "Shelter Sector")+
+  xlim(0, 100)+theme_classic() +
   theme(legend.position = "bottom")+scale_color_brewer(palette = "Set1")
 
 cleaned_data |>
   ggplot(mapping = aes(x=occupancy_rate_rooms,color= sector)) +
    geom_freqpoly(binwidth=10) +
-  labs(x = "Categorizing Homeless Shelters", y = "Occupancy Rate of Beds", fill = "Shelter Program") +
+  labs(x = "Occupancy Rate Rooms", fill = "Shelter Sector")+
+  xlim(0, 100)+theme_classic() +
   theme(legend.position = "bottom")+scale_color_brewer(palette = "Set1")
 
 ```
@@ -179,8 +186,8 @@ In @fig-hist2, the histogram shows that occupancy rates for both emergency and t
 #| warning: false
 #| message: false
 #| label: fig-hist2
-#| fig-cap: "Distribution of occupancy rate in each Program Model."
-#| fig-subcap: ["Beds","Rooms"]
+#| fig-cap: "Distribution of occupancy rate in each Shelter Program."
+#| fig-subcap: ["Bed-Based","Room-Based"]
 #| layout-ncol: 2
 cleaned_data |> 
   filter(!is.na(occupancy_rate_beds), !is.na(capacity_actual_bed),!is.na(program_model)) |>
@@ -191,7 +198,7 @@ ggplot(mapping = aes(x = occupancy_rate_beds, fill = program_model)) +
     x = "Occupancy Rate of Beds", y = "Number of occurrences",
     fill = "Program Model",
     caption = "Data source: Open Toronto Data."
-  ) +
+  ) +theme_classic()+
   scale_color_brewer(palette = "Set1")
 
 cleaned_data |> 
@@ -203,24 +210,29 @@ ggplot(mapping = aes(x = occupancy_rate_rooms, fill = program_model)) +
     x = "Occupancy Rate of Rooms", y = "Number of occurrences",
     fill = "Program Model",
     caption = "Data source: Open Toronto Data."
-  ) +
+  )+theme_classic() +
   scale_color_brewer(palette = "Set1")
 
 
 ```
 
 
-# Discussion{#third}
+# Discussion{#third} 
 
 ## From User Service Count Aspect
+
 Based on the dataset, it was found that shelters in the Greater Toronto Area (GTA) are highly concentrated, with approximately 78% located within the city of Toronto.  In comparison, North York has the second-highest concentration at only 9.9%.  However, as shown in @fig-bar1, North York shelters account for 18.71% of the total service user count, nearly double its proportion of shelters.  This suggests that despite the high number of shelters in the GTA, areas outside of downtown Toronto, such as North York, are still facing a shortage of shelters and experiencing significant capacity pressure. Regarding shelter usage, mixed adult emergency shelters are the most frequently utilized, with a total of 1,071,686 service counts in 2023, followed by emergency Families (773818), emergency Men (632405), emergency Women (311085), emergency Youth (151759);  transitional Families(108815), Mixed Adult (70805), Men (64191), Women (38873), Youth (65068). According to data from the City of Toronto(@web5), approximately 10,700 individuals are experiencing homelessness, which suggests that each adult can stay in a shelter for around 100 nights, on average.  Although we currently do not have specific data on the number of days individuals are allowed to stay in shelters, this estimate indicates that Toronto’s shelters have enough capacity to temporarily accommodate the homeless population effectively. Except for the dramatic drops in February and rises in December, the whole year's usage of shelters is mostly consistent.  @fig-line1 shows that these fluctuations are primarily driven by changes in the number of users of emergency program shelters, as there is no significant variation in the transitional programs. The exact cause of this dramatic change is still unclear;  it could be due to February having only 28 days, or there may have been specific events or circumstances in February and December that contributed to the shifts.\
 
 ## From the Occupancy Rate Aspect
-The occupancy rate remains consistently high, close to 100%, across both shelter programs and shelter sectors.This indicates a high level of utilization across these programs, reflecting the ongoing demand for shelter services in the area, suggest that both emergency and transitional shelters are effectively meeting the needs of individuals experiencing homelessness (@fig-hist1,@fig-hist2). However, a notable exception is the Youth bed-based shelters, which exhibit a small peak at around 50% occupancy. This indicates that, on certain nights, only half of the available beds in youth shelters are occupied.
-This discrepancy raises important questions: What accounts for the difference in occupancy rates between Youth and Adult shelters? Is it simply that the homeless population among youth is significantly smaller than among adults? Or could it be that youth face a larger information gap regarding shelter availability compared to adults?
-Understanding the cause of this difference is urgent, as homeless youth are particularly vulnerable, and it is crucial to ensure that they are adequately protected and housed in shelters.
 
-## Taken insight
+The occupancy rate remains consistently high, close to 100%, across both shelter programs and shelter sectors.This indicates a high level of utilization across these programs, reflecting the ongoing demand for shelter services in the area, suggest that both emergency and transitional shelters are effectively meeting the needs of individuals experiencing homelessness (@fig-hist1,@fig-hist2). 
+
+However, a notable exception is the Youth bed-based shelters, which exhibit a small peak at around 50% occupancy. This indicates that, on certain nights, only half of the available beds in youth shelters are occupied. This discrepancy raises important questions: What accounts for the difference in occupancy rates between Youth and Adult shelters? Is it simply that the homeless population among youth is significantly smaller than among adults? Or could it be that youth face a larger information gap regarding shelter availability compared to adults? Understanding the cause of this difference is urgent, as homeless youth are particularly vulnerable, and it is crucial to ensure that they are adequately protected and housed in shelters.
+
+It is also notable that bed-based transitional shelters show a significant number of occupancy rates distributed below 90%, indicating that these shelters may not be fully utilized. This underutilization suggests that factors beyond capacity, such as access barriers, may be contributing to the incomplete use of transitional shelters. This observation raises important questions about the reasons behind this underuse, prompting a closer look at the specific challenges faced by transitional shelters.
+
+## Insights into the Underutilization and Availability Challenges of Transitional Shelters
+
 When we examine the service user counts and occupancy rates, it becomes clear that there are relatively few transitional shelters. From the perspective of city location (@fig-bar1), only three cities have transitional shelter programs: Toronto (329,046 users), Etobicoke (5,279 users), and Scarborough (13,427 users). Together, these cities account for only 10.67% of the total service user count, making transitional shelters a clear minority among shelter programs.
 
 Looking at the shelter sectors (@fig-bar2), it is evident that the use of transitional shelters is far lower than that of emergency shelters. This raises an important question: why is this the case? A likely reason is that transitional shelters are only accessible to eligible individuals and families through a referral process. This creates barriers for people experiencing homelessness to access them. Consequently, the assessment and referral process contribute to the higher operational costs of transitional shelters compared to emergency shelters, leading to fewer transitional shelters being available.
@@ -228,6 +240,7 @@ Looking at the shelter sectors (@fig-bar2), it is evident that the use of transi
 However, as discussed in Section [1](#first-intro), the short stay provided by emergency shelters may not be sufficient to address the varied and complex causes of homelessness. Shelters often serve as the first step in helping people experiencing homelessness break the cycle—such as securing a stable address in order to find work. For this reason, long-term stays are often necessary. Unfortunately, the strict eligibility requirements and referral processes of transitional shelters may not adequately meet the needs of individuals seeking reintegration into society.
 
 ## Weaknesses and next steps
+
 Since our dataset contains many NA values, and every observation has at least one missing value, the presence of these missing values compromises the dataset's integrity, making it challenging to draw reliable conclusions. Therefore, as the next step, we plan to track the dataset for at least 12 months to validate the robustness of our results.
 
 \newpage
@@ -235,14 +248,18 @@ Since our dataset contains many NA values, and every observation has at least on
 \appendix
 
 # Appendix {#appendix-a}
+
 ## Dataset and Graph Sketches {#appendix-a.1}
+
 Sketches depicting both the desired dataset and the graphs generated in this analysis are available in the GitHub Repository. 
 
 ## Data Cleaning {#appendix-a.2}
-The data cleaning process involved seperating dates into year, month and day for clarity and simplicity. The data doesn't filtered with the NA's value since every observation in the dataset contains at least one missing value in a variable. Removing these observations would result in the complete loss of data, making analysis impossible.
+
+The data cleaning process involved separating dates into year, month, and day for clarity and simplicity. The data isn't filtered with the NA's value since every observation in the dataset contains at least one missing value in a variable. Removing these observations would result in the complete loss of data, making analysis impossible.
 
 ## Attribution Statement {#appendix-a.3}
-“Contains information licensed under the Open Government Licence– Toronto” (@web3).
+
+"Contains information licensed under the Open Government Licence– Toronto" (@web3).
 
 ## variable description{#appendix-a.4}
 ```{r}
