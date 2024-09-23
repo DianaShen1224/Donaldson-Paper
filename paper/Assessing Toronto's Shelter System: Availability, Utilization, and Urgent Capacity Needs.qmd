@@ -26,7 +26,7 @@ library(modelsummary)
 #| warning: false
 #| message: false
 #### Load Clean data ####
-cleaned_data <- read_csv("~/Donaldson Paper/data/analysis_data/analysis_data.csv")
+cleaned_data <- read_csv("~/Toronto-Shelter-Research/data/analysis_data/analysis_data.csv")
 ```
 
 # 1. Introduction {#first-intro}

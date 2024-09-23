@@ -28,7 +28,7 @@ toronto_shelters <-
 #### Save data ####
 write_csv(
   x = toronto_shelters,
-  file = "~/Donaldson Paper/data/raw_data/toronto_shelters_2023.csv"
+  file = "~/Toronto-Shelter-Research/data/raw_data/toronto_shelters_2023.csv"
 )
 
 head(toronto_shelters)
