@@ -2,7 +2,7 @@
 
 ## Overview
 
-Toronto Shelter Research is a project studying the shelters located in the City of Toronto, which is funded by the government. The project is designed to investigate the effectiveness of shelters in Toronto. It is built using Rstudio.
+Toronto Shelter Research is a project studying the shelters located in the City of Toronto, which is funded by the government. The project is designed to investigate the availability and effectiveness of shelters in Toronto. It is built using Rstudio.
 
 ## File Structure
 
