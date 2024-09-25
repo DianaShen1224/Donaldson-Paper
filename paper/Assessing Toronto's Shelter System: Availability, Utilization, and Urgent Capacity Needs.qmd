@@ -258,7 +258,7 @@ In conclusion, Toronto's shelter system is well-utilized but faces critical gaps
 
 ## Weaknesses and next steps
 
-Since our dataset contains many NA values, and every observation has at least one missing value, the presence of these missing values compromises the dataset's integrity, making it challenging to draw reliable conclusions. Therefore, as the next step, we plan to track the dataset for at least 12 months to validate the robustness of our results.
+Since our dataset contains many NA values, and every observation has at least one missing value, the presence of these missing values compromises the dataset's integrity, making it challenging to draw reliable conclusions. Therefore, as the next step, we plan to track the dataset for at least 12 months to validate the robustness of our results. Also, we want to combined more data about the shelter, such as the characteristics of people living in the shelter, the average days homelessness living in the shelter to get a more in-depth analyze of relationship between homelessness population and shelters in the City of Toronto.
 
 \newpage
 
