@@ -18,4 +18,4 @@ The repo is structured as:
 
 ## Statement on LLM usage
 
-Aspects of the code were written with the help of the chat tools Chatgpt4. The abstract and introduction were written with the help ofthe chat tools Chatgpt4 and the entire chat history is available in inputs/llms/usage.txt.
+Aspects of the code were written with the help of the chat tools Chatgpt4. The abstract and introduction were written with the help ofthe chat tools Chatgpt4 and the entire chat history is available in other/llms/usage.txt.
