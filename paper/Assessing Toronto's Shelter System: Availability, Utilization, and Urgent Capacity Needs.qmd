@@ -254,6 +254,8 @@ However, as discussed in Section [1](#first-intro), the short stay provided by e
 
 ## Summary
 
+In conclusion, Toronto's shelter system is well-utilized but faces critical gaps, particularly in transitional shelters and services for youth. While the majority of shelters are concentrated in downtown Toronto, areas like North York experience significant strain due to a lack of facilities. Emergency shelters operate at full capacity, yet youth shelters show underutilization, suggesting a need for better outreach and accessibility. Transitional shelters, essential for long-term reintegration, are limited by referral barriers, leading to underuse despite ongoing demand. Addressing these issues is crucial to improving shelter effectiveness and supporting Toronto’s homeless population.
+
 ## Weaknesses and next steps
 
 Since our dataset contains many NA values, and every observation has at least one missing value, the presence of these missing values compromises the dataset's integrity, making it challenging to draw reliable conclusions. Therefore, as the next step, we plan to track the dataset for at least 12 months to validate the robustness of our results.
