@@ -32,7 +32,7 @@ simulated_categorical <-tibble("Division" = 1:151,"Sector" = sample(c("Men", "Wo
   num_shelters, replace = TRUE
 ))
 head(simulated_categorical)
-write_csv(simulated_categorical, file = "data/raw_data/simulated_categorical.csv")
+write_csv(simulated_categorical, file = "data/simulated_data/simulated_categorical.csv")
 
 ##ID 
 set.seed(1098)
@@ -57,7 +57,7 @@ simulated_ID <- tibble(
   PROGRAM_NAME = rep(sample(c("Program A", "Program B", "Program C"), num_shelters, replace = TRUE), each = total_days)
 )
 head(simulated_ID)
-write_csv(simulated_ID, file = "data/raw_data/simulated_ID.csv")
+write_csv(simulated_ID, file = "data/simulated_data/simulated_ID.csv")
 
 ##numerical
 set.seed(1098)
@@ -85,4 +85,4 @@ simulated_occupancy_data <-
     SERVICE_USER_COUNT = occupied_bed + occupied_rooms
   )|>rename_all(tolower)
 head(simulated_occupancy_data)
-write_csv(simulated_occupancy_data, file = "data/raw_data/simulated_numerical.csv")
+write_csv(simulated_occupancy_data, file = "data/simulated_data/simulated_numerical.csv")
