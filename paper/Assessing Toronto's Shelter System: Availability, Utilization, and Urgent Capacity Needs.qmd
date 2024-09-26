@@ -39,7 +39,7 @@ Given the scale of homelessness in Toronto, it is essential to assess how effect
 
 To do this, the daily list of active overnight shelter and allied services from the Toronto Shelter and SMIS database was obtained from Toronto Open Data, as described in Section [2.1](#sec1-data). Based on this dataset(Section [2.2](#sec2-data)), it was found that shelters in GTA are highly concentrated, with about 78% located within the city, while North York has the second-highest concentration at only 9.9%. We find out that though shelters are highly available, despite Toronto's downtown, other cities are still facing a shortage. Regarding shelter usage, mixed adult emergency shelters are the most frequently used, with a total of 1,071,686 counts in 2023. Usage drops dramatically in February and rises again in December. The occupancy rate is consistently at 100% for both emergency and transitional shelters, which shows highly efficient results.
 
-As discussed in Section [3](#third), We find out that though shelters are highly available, despite Toronto downtown, other cities are still facing a shortage(for NY only 9.9%). The whole year's usage is stable except for February and December fluctuations. Furthermore, occupancy trends highlight a unique issue within youth shelters, where peak occupancy remains around 50%, signaling potential service gaps for this vulnerable population. Additionally, transitional shelters face significant shortages, which are critical for helping individuals re-enter society. With respect to the structure of this paper, Section [2](#sec-data) provides an overview of the data and results, while Section [3](#third) includes a discussion of the findings; and Section [A](#appendix-a) includes supplementary information.
+As discussed in Section [3](#third), We find out that though shelters are highly available, despite Toronto downtown, other cities are still facing a shortage (for North York only 9.9%). The whole year's usage is stable except for February and December fluctuations. Furthermore, occupancy trends highlight a unique issue within youth shelters, where peak occupancy remains around 50%, signaling potential service gaps for this vulnerable population. Additionally, transitional shelters face significant shortages, which are critical for helping individuals re-enter society. With respect to the structure of this paper, Section [2](#sec-data) provides an overview of the data and results, while Section [3](#third) includes a discussion of the findings; and Section [A](#appendix-a) includes supplementary information.
 
 # Data {#sec-data}
 
@@ -65,6 +65,7 @@ The data was cleaned and analyzed by using the open-source statistical programmi
 #| warning: false
 #| message: false
 #| label: tbl-sum1
+#| tbl-pos: H
 #| fig-cap: "Summary Statistics of Catogrical Variables in the dataset"
 datasummary_skim(cleaned_data |>select(location_city,sector,program_model,overnight_service_type,program_area,capacity_type),type = "categorical",longtable = TRUE 
                  )
@@ -80,6 +81,7 @@ datasummary_skim(cleaned_data |>select(location_city,sector,program_model,overni
 #| warning: false
 #| message: false
 #| label: tbl-sum2
+#| tbl-pos: H
 #| fig-cap: "Summary Statistics of Numerical Variables in the dataset"
 datasummary_skim(cleaned_data |>select(capacity_actual_bed,capacity_funding_bed,occupied_beds,unoccupied_beds,unavailable_beds,capacity_actual_room,capacity_funding_room,occupied_rooms,unoccupied_rooms,unavailable_rooms,occupancy_rate_beds,occupancy_rate_rooms,service_user_count),type = "numeric",fun_numeric = list(Mean = Mean, SD =
     SD, Min = Min, Median = Median, Max = Max, Histogram = function(x) ""),
@@ -119,7 +121,7 @@ cleaned_data |>
 #| warning: false
 #| message: false
 #| label: fig-bar2
-#| out.width: 80%
+#| out.width: 70%
 #| fig-pos: H
 #| fig-cap: "Service User Count for each sectors for each shelter program for funded shelters."
 cleaned_data |>
